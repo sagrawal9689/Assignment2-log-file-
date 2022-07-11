@@ -27,7 +27,6 @@ with open(fileName, 'r') as f:
     
     for l in f_contents:
         
-        s= l.split(']')
         
         # print(s)
         

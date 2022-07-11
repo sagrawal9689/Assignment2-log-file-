@@ -7,8 +7,6 @@ fileName= sys.argv[1]
 
 import datetime
 
-#   May 04 15:52:05 2022
-
 def convertStringToTimeObject(givenTime):
     
     date_time_obj = datetime.datetime.strptime(givenTime,'%b %d %H:%M:%S %Y')
@@ -38,8 +36,8 @@ with open(fileName, 'r') as f:
         disc= re.search(r"Disconnected", l)
         success= re.search(r"SUCCSESS", l)
 
-        status= con.group(0) if con else disc.group(0) if disc else success.group(0) if success else "" 
-        # s= status. 
+        status= con.group(0) if con else disc.group(0) if disc else success.group(0) if success else ""
+
         timeObj= convertStringToTimeObject(time)
         
         

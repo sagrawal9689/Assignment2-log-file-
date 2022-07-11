@@ -1,5 +1,7 @@
 import sys
 import datetime
+import re
+from tokenize import group
 
 fileName= sys.argv[1]
 
@@ -29,10 +31,16 @@ with open(fileName, 'r') as f:
         
         # print(s)
         
-        device= s[2][2:]
-        status= s[-1].split(' ')[-1][0:-1]
-        logType= s[1][2:]
-        time= s[0][1:]
+        result = re.findall(r"\[[^\]]*\]", l) 
+        time= result[0][1:-1]
+        logType= result[1][1:-1]
+        device= result[2][1:-1]
+        con=  re.search(r"Connected", l) 
+        disc= re.search(r"Disconnected", l)
+        success= re.search(r"SUCCSESS", l)
+
+        status= con.group(0) if con else disc.group(0) if disc else success.group(0) if success else "" 
+        # s= status. 
         timeObj= convertStringToTimeObject(time)
         
         
